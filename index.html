@@ -1,25 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Secure Payment</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Secure Payment - One Piece</title>
 
-  <!-- Link your local CSS file -->
-  <link rel="stylesheet" href="./auth.css">
-
-  <!-- Include the Braintree drop-in script -->
+  <!-- Braintree Drop-in UI Library -->
   <script src="https://js.braintreegateway.com/web/dropin/1.45.1/js/dropin.js"></script>
+
+  <!-- Your CSS -->
+  <link rel="stylesheet" href="./auth.css" />
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+    h2 {
+      color: #222;
+      margin-bottom: 20px;
+    }
+    #dropin-container {
+      width: 350px;
+      margin-bottom: 20px;
+    }
+    .button {
+      cursor: pointer;
+      font-weight: 500;
+      line-height: inherit;
+      text-decoration: none;
+      text-align: center;
+      border-style: solid;
+      border-width: 1px;
+      border-radius: 3px;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      display: inline-block;
+    }
+    .button--small {
+      padding: 10px 20px;
+      font-size: 0.875rem;
+    }
+    .button--green {
+      outline: none;
+      background-color: #64d18a;
+      border-color: #64d18a;
+      color: white;
+      transition: all 200ms ease;
+    }
+    .button--green:hover {
+      background-color: #8bdda8;
+      color: white;
+    }
+  </style>
 </head>
 
 <body>
-  <!-- Payment container -->
+  <h2>Secure Payment Portal</h2>
+
+  <!-- Braintree Drop-in -->
   <div id="dropin-container"></div>
 
-  <!-- Secure button -->
-  <button id="submit-button" class="button button--small button--green">Secure</button>
+  <!-- Secure Pay Button -->
+  <button id="submit-button" class="button button--small button--green">
+    Secure Pay
+  </button>
 
-  <!-- Link your local JS file -->
-  <script src="./auth.js" defer></script>
+  <script>
+    async function setupBraintree() {
+      try {
+        // 1️⃣ Fetch client token from your backend (Vercel)
+        const response = await fetch("/api/generate_token");
+        const data = await response.json();
+
+        if (!data.clientToken) {
+          alert("Failed to get client token from server.");
+          return;
+        }
+
+        // 2️⃣ Initialize Drop-in UI
+        braintree.dropin.create({
+          authorization: data.clientToken,
+          container: "#dropin-container",
+        }, function (createErr, instance) {
+          if (createErr) {
+            console.error("Braintree setup error:", createErr);
+            alert("Error setting up payment form. Check console.");
+            return;
+          }
+
+          // 3️⃣ Handle payment button
+          const button = document.getElementById("submit-button");
+          button.addEventListener("click", () => {
+            instance.requestPaymentMethod(async (err, payload) => {
+              if (err) {
+                console.error("Payment method error:", err);
+                alert("Payment error. Check console.");
+                return;
+              }
+
+              console.log("Payment nonce:", payload.nonce);
+              alert("Nonce generated successfully — check console.");
+
+              // 4️⃣ (Optional) Send nonce to your other backend to process payment
+              /*
+              await fetch("https://your-replit-backend.repl.co/process_payment", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ nonce: payload.nonce })
+              });
+              */
+            });
+          });
+        });
+      } catch (error) {
+        console.error("Error setting up Braintree:", error);
+        alert("Setup failed — check console for details.");
+      }
+    }
+
+    setupBraintree();
+  </script>
 </body>
 </html>
