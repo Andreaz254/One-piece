@@ -1,4 +1,25 @@
-<script src="https://js.braintreegateway.com/web/dropin/1.45.1/js/dropin.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Secure Payment</title>
 
-<div id="dropin-container"></div>
-<button id="submit-button" class="button button--small button--green">secure</button>
+  <!-- Link your local CSS file -->
+  <link rel="stylesheet" href="./auth.css">
+
+  <!-- Include the Braintree drop-in script -->
+  <script src="https://js.braintreegateway.com/web/dropin/1.45.1/js/dropin.js"></script>
+</head>
+
+<body>
+  <!-- Payment container -->
+  <div id="dropin-container"></div>
+
+  <!-- Secure button -->
+  <button id="submit-button" class="button button--small button--green">Secure</button>
+
+  <!-- Link your local JS file -->
+  <script src="./auth.js" defer></script>
+</body>
+</html>
