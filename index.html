@@ -1,202 +1,101 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>One Piece Books | Engineering Resources for Students</title>
-
-  <!-- Braintree Drop-in UI -->
-
-  <script src="https://js.braintreegateway.com/web/dropin/1.45.1/js/dropin.js"></script>
-
-  <!-- Custom Styles -->
-
-  <link rel="stylesheet" href="./auth.css" />
-
+  <title>Engineering Textbooks Online | Your Bookshop Name</title>
   <style>
+    /* Reset and base styles */
     body {
-      font-family: "Segoe UI", Roboto, sans-serif;
-      background-color: #f9fafb;
-      color: #222;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
       padding: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
+      background-color: #f4f7f6; /* Light gray background */
+      color: #333;
+      text-align: center;
     }
 
+    /* Header/Navigation */
     header {
-      width: 100%;
-      background: #004aad;
+      background-color: #004d40; /* Dark Teal */
       color: white;
       padding: 20px 0;
-      text-align: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
     header h1 {
       margin: 0;
-      font-size: 1.8rem;
+      font-size: 2.2em;
     }
 
-    .hero {
-      text-align: center;
-      padding: 40px 20px;
+    /* Main Content Area */
+    .hero-section {
+      padding: 80px 20px;
+      background-color: #e0f2f1; /* Lighter Teal */
+    }
+
+    .hero-section h2 {
+      font-size: 2.5em;
+      color: #004d40; /* Dark Teal */
+      margin-bottom: 15px;
+    }
+
+    .hero-section p {
+      font-size: 1.2em;
       max-width: 700px;
-    }
-
-    .hero h2 {
-      color: #004aad;
-      font-size: 1.6rem;
-      margin-bottom: 10px;
-    }
-
-    .hero p {
-      color: #555;
-      font-size: 1rem;
+      margin: 0 auto 30px;
       line-height: 1.6;
     }
 
-    .shop-section {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      padding: 30px;
-      margin: 30px 0;
-      width: 90%;
-      max-width: 400px;
-      text-align: center;
-    }
-
-    .book-img {
-      width: 100%;
-      height: 200px;
-      background: url('https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=800&q=60') center/cover;
-      border-radius: 10px;
-      margin-bottom: 20px;
-    }
-
-    h3 {
-      margin-bottom: 10px;
-      color: #222;
-    }
-
-    #dropin-container {
-      width: 100%;
-      margin: 20px 0;
-    }
-
-    .button {
-      cursor: pointer;
-      font-weight: 500;
-      text-align: center;
+    /* Call-to-Action Button */
+    .cta-button {
+      display: inline-block;
+      padding: 12px 30px;
+      background-color: #ff9800; /* Amber/Orange */
+      color: white;
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 1.1em;
+      transition: background-color 0.3s ease;
       border: none;
-      border-radius: 6px;
-      padding: 12px 24px;
-      font-size: 1rem;
-      background-color: #28a745;
-      color: white;
-      transition: background 200ms ease;
+      cursor: pointer;
     }
 
-    .button:hover {
-      background-color: #45c76f;
+    .cta-button:hover {
+      background-color: #fb8c00; /* Darker Amber/Orange */
     }
 
+    /* Footer */
     footer {
-      margin-top: auto;
+      padding: 20px 0;
+      background-color: #333;
+      color: #ccc;
+      font-size: 0.9em;
+      position: fixed;
+      bottom: 0;
       width: 100%;
-      background: #004aad;
-      color: white;
-      text-align: center;
-      padding: 15px 0;
-      font-size: 0.9rem;
     }
   </style>
-
 </head>
-
 <body>
+
   <header>
-    <h1>One Piece Books</h1>
+    <h1>The Engineering Library 📚</h1>
   </header>
 
-  <section class="hero">
-    <h2>Engineering Books Made Simple</h2>
-    <p>Welcome to <strong>One Piece Books</strong> — your online bookstore for engineering students. We provide affordable, up-to-date textbooks and study guides designed to help you excel in your coursework.</p>
-  </section>
-
-  <section class="shop-section">
-    <div class="book-img"></div>
-    <h3>Digital Circuit Design</h3>
-    <p>Get instant access to our best-selling eBook on circuit design. Learn the fundamentals of logic gates, Boolean algebra, and practical applications.</p>
-
-```
-<div id="dropin-container"></div>
-<button id="submit-button" class="button">Buy Now - Secure Pay</button>
-```
-
-  </section>
+  <main class="hero-section">
+    <h2>Your Trusted Source for Engineering Textbooks</h2>
+    <p>
+      Find the essential resources you need to excel in your studies. We provide a curated selection of textbooks for **Civil, Mechanical, Electrical, Computer Science, and more**, tailored specifically for engineering students.
+    </p>
+    <a href="#" class="cta-button">Browse Textbooks Now</a>
+    
+  </main>
 
   <footer>
-    © 2025 One Piece Books. All rights reserved.
+    <p>&copy; 2025 The Engineering Library. Made for students, by students.</p>
   </footer>
-
-  <script>
-    async function setupBraintree() {
-      try {
-        const response = await fetch("/api/generate_token");
-        const data = await response.json();
-
-        if (!data.clientToken) {
-          alert("Failed to get client token from server.");
-          return;
-        }
-
-        braintree.dropin.create({
-          authorization: data.clientToken,
-          container: "#dropin-container",
-        }, function (createErr, instance) {
-          if (createErr) {
-            console.error("Braintree setup error:", createErr);
-            alert("Error setting up payment form. Check console.");
-            return;
-          }
-
-          const button = document.getElementById("submit-button");
-          button.addEventListener("click", () => {
-            instance.requestPaymentMethod(async (err, payload) => {
-              if (err) {
-                console.error("Payment method error:", err);
-                alert("Payment error. Check console.");
-                return;
-              }
-
-              console.log("Payment nonce:", payload.nonce);
-              alert("Payment initiated successfully! (Nonce logged in console)");
-
-              // Example backend call to process payment
-              /*
-              await fetch("/api/process_payment", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ nonce: payload.nonce })
-              });
-              */
-            });
-          });
-        });
-      } catch (error) {
-        console.error("Error setting up Braintree:", error);
-        alert("Setup failed — check console for details.");
-      }
-    }
-
-    setupBraintree();
-  </script>
 
 </body>
 </html>
