@@ -233,13 +233,10 @@
   </footer>
   
   <script>
-    // ⚙️ Braintree Payment Logic ⚙️
-    const BACKEND_URL = "https://handling-impacts-soma-baby.trycloudflare.com"; // Your Cloudflare URL
-
+    // ⚙️ Braintree Payment Logic (Your original script) ⚙️
     async function setupBraintree() {
       try {
-        // Fetch client token from your backend, using the Cloudflare URL
-        const response = await fetch(`${BACKEND_URL}/api/generate_token`);
+        const response = await fetch("/api/generate_token");
         const data = await response.json();
         if (!data.clientToken) {
           console.error("No client token received:", data);
@@ -250,6 +247,7 @@
         braintree.dropin.create({
           authorization: data.clientToken,
           container: "#dropin-container",
+          // You might specify payment options here, like 'card', 'paypal', etc.
         }, function (createErr, instance) {
           if (createErr) {
             console.error("Braintree setup error:", createErr);
@@ -266,46 +264,33 @@
                 return;
               }
               
-              const nonce = payload.nonce;
-              console.log("Payment Nonce generated:", nonce);
+              console.log("Payment Nonce:", payload.nonce);
+              alert("Payment initiated successfully! Nonce ready to send to server.");
               
-              // --------------------------------------------------------
-              // ⚠️ CRITICAL UPDATE: Send the Nonce to your backend 
-              // --------------------------------------------------------
-              try {
-                const checkoutResponse = await fetch(`${BACKEND_URL}/process_payment`, {
-                  method: "POST",
-                  headers: { 
-                    "Content-Type": "application/json" 
-                  },
-                  body: JSON.stringify({ 
-                    nonce: nonce, 
-                    amount: 29.99, // IMPORTANT: The amount must be verified on the server side
-                    product_id: "DIGI-CIRCUIT-EBOOK-001"
-                  })
-                });
-                
-                if (checkoutResponse.ok) {
-                    const result = await checkoutResponse.json();
-                    alert(`Payment successful! Transaction ID: ${result.transaction_id || 'N/A'}`);
-                    console.log("Backend response:", result);
-                    // TODO: Redirect user to download page or show success message
-                } else {
-                    const errorResult = await checkoutResponse.json();
-                    alert(`Payment failed! Reason: ${errorResult.message || checkoutResponse.statusText}`);
-                    console.error("Payment processing error:", errorResult);
-                }
-              } catch (error) {
-                  console.error("Error communicating with backend:", error);
-                  alert("Failed to finalize payment. Check backend connection.");
+              // ⚠️ This is the critical step for your server (the 'checkout route'):
+              /*
+              const checkoutResponse = await fetch("/api/process_payment", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ 
+                  nonce: payload.nonce, 
+                  amount: 29.99, // IMPORTANT: Send the amount to the server
+                  product_id: "DIGI-CIRCUIT-EBOOK-001"
+                })
+              });
+              
+              if (checkoutResponse.ok) {
+                  // Redirect to success page or show download link
+              } else {
+                  // Handle server failure
               }
-              // --------------------------------------------------------
+              */
             });
           });
         });
       } catch (error) {
-        console.error("Error setting up Braintree (client token fetch):", error);
-        alert("Setup failed — check console for client token details.");
+        console.error("Error setting up Braintree:", error);
+        alert("Setup failed — check console for details.");
       }
     }
     setupBraintree();
