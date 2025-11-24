@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms and Conditions | One Piece Books</title>
+  <style>
+    body {
+      font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+      background-color: #f8f9fa;
+      color: #222;
+      margin: 0;
+      padding: 0 20px;
+    }
+    header, footer {
+      background-color: #007bff;
+      color: white;
+      text-align: center;
+      padding: 20px 0;
+    }
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+    h1, h2 {
+      color: #007bff;
+    }
+    p, li {
+      line-height: 1.7;
+      color: #444;
+    }
+    ul {
+      margin-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>One Piece Books 📚</h1>
+  </header>
+
+  <main>
+    <h1>Terms and Conditions</h1>
+    <p>Effective Date: November 2025</p>
+    <p>These terms and conditions govern your use of the One Piece Books website and digital products. By accessing or using our services, you agree to comply with these terms.</p>
+
+    <h2>1. Use of Website and Products</h2>
+    <ul>
+      <li>All digital books and resources are for personal, non-commercial use unless otherwise stated.</li>
+      <li>You may not redistribute, resell, or copy our products without explicit permission.</li>
+      <li>Accessing our website and content constitutes acceptance of these terms.</li>
+    </ul>
+
+    <h2>2. Purchases and Payments</h2>
+    <ul>
+      <li>All purchases are final; no refunds are offered unless legally required.</li>
+      <li>Payments are securely processed through trusted payment providers. One Piece Books does not store credit card information.</li>
+      <li>Prices are subject to change without prior notice.</li>
+    </ul>
+
+    <h2>3. Intellectual Property</h2>
+    <ul>
+      <li>All content on One Piece Books, including text, images, and digital books, is protected by copyright and other intellectual property laws.</li>
+      <li>Unauthorized use, reproduction, or distribution is strictly prohibited.</li>
+    </ul>
+
+    <h2>4. Limitation of Liability</h2>
+    <ul>
+      <li>We are not liable for any damages arising from the use or inability to use our products or website.</li>
+      <li>We do not guarantee uninterrupted access or error-free content.</li>
+    </ul>
+
+    <h2>5. Modifications to Terms</h2>
+    <p>We may update these terms periodically. Continued use of our services constitutes acceptance of any changes.</p>
+
+    <h2>6. Governing Law</h2>
+    <p>These terms are governed by the laws of the jurisdiction in which One Piece Books operates.</p>
+
+    <h2>7. Contact Us</h2>
+    <p>For questions regarding these Terms and Conditions, please contact: <strong>support@skunaone.tech</strong></p>
+  </main>
+
+  <footer>
+    &copy; 2025 One Piece Books
+  </footer>
+</body>
+</html>
