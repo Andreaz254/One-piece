@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Refund Request</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f6f6f6;
+      padding: 40px;
+    }
+    .container {
+      max-width: 480px;
+      margin: auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 12px;
+      display: block;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      border: none;
+      border-radius: 8px;
+      background: #007bff;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Refund Request Form</h2>
+    <form action="/process_refund" method="POST">
+      <label>Full Name</label>
+      <input type="text" name="name" required />
+
+      <label>Email Address</label>
+      <input type="email" name="email" required />
+
+      <label>Order ID</label>
+      <input type="text" name="order_id" required />
+
+      <label>Refund Reason</label>
+      <textarea name="reason" rows="4" required></textarea>
+
+      <label>Refund Type</label>
+      <select name="type" required>
+        <option value="full">Full Refund</option>
+        <option value="partial">Partial Refund</option>
+      </select>
+
+      <button type="submit">Submit Refund Request</button>
+    </form>
+  </div>
+  <div style="text-align:center; margin-top:40px; font-size:16px; color:#333;">
+    <p>Are you dissatisfied with your purchase? File a refund below.</p>
+    <a href="/refund.html" style="display:inline-block; margin-top:10px; padding:12px 20px; background:#007bff; color:#fff; border-radius:8px; text-decoration:none;">Request a Refund</a>
+  </div>
+</body>
+</html>
